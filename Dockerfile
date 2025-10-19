@@ -1,4 +1,4 @@
-FROM maven:3.9.4-amazoncorretto-21-debian-bookworm AS MAVEN_BUILD
+FROM maven:3.9.4-amazoncorretto-21-debian-bookworm AS maven_build
 COPY pom.xml /build/
 WORKDIR /build
 RUN mvn dependency:go-offline -B

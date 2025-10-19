@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Formularz dodwania produktu</title>
+</head>
+<body>
+<main class="main-content" layout:fragment="content">
+
+    <h1 class="list-heading">Dodaj produkt</h1>
+
+    <form action="#" th:action="@{/produkty/dodaj}" method="post" th:object="${productToSave}" class="form-add-client">
+
+        <label for="partNumber">Numer produktu</label>
+        <input type="text" id="partNumber" th:field="*{partNumber}" required="required" />
+        <p th:errors="*{partNumber}">Błędy związane z numerem produktu</p>
+
+        <label for="name">Nazwa produktu</label>
+        <input type="text" id="name" th:field="*{name}" required="required" />
+        <p th:errors="*{name}">Błędy związane z nazwą produktu</p>
+
+        <label for="retailPriceNetto">Cena katalogowa netto</label>
+        <input type="number" step="0.01" id="retailPriceNetto" th:field="*{retailPriceNetto}" />
+        <p th:errors="*{retailPriceNetto}">Błędy związane z ceną netto</p>
+
+        <label for="retailPriceBrutto">Cena katalogowa brutto</label>
+        <input type="number" step="0.01" id="retailPriceBrutto" th:field="*{retailPriceBrutto}" />
+        <p th:errors="*{retailPriceBrutto}">Błędy związane z  ceną brutto</p>
+
+        <label for="cc">Punkty CC</label>
+        <input type="number" step="0.001" id="cc" th:field="*{cc}" />
+        <p th:errors="*{cc}">Błędy związane z punktami CC</p>
+
+        <label for="vat">VAT</label>
+        <input type="number" step="1" id="vat" th:field="*{vat}" />
+        <p th:errors="*{vat}">Błędy związane z vatem</p>
+
+        <button type="submit">Dodaj produkt</button>
+    </form>
+
+</main>
+</body>
+</html>

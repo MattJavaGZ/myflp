@@ -1,0 +1,24 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  liquibase:
+    change-log: classpath:db/changelog/master.xml
+
+  profiles:
+    active: dev
+
+  app:
+    email:
+      login: matekjava@onet.pl
+      password: nowetrudnehaslo123@
+
+server:
+  servlet:
+    session:
+      cookie:
+        max-age: 7776000
+      timeout: 2592000
+
+

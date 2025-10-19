@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <include file="0001_create_table_work_station.xml" relativeToChangelogFile="true"/>
+    <include file="0002_create_tables_users_and_role.xml" relativeToChangelogFile="true"/>
+    <include file="0003_create_table_client.xml" relativeToChangelogFile="true"/>
+    <include file="0004_create_table_order.xml" relativeToChangelogFile="true"/>
+    <include file="0006_create_table_product.xml" relativeToChangelogFile="true"/>
+    <include file="0005_create_table_order_item.xml" relativeToChangelogFile="true"/>
+    <include file="0007_create_table_client-group.xml" relativeToChangelogFile="true"/>
+    <include file="0008_create_table_client_group_map.xml" relativeToChangelogFile="true"/>
+
+    <include file="../testdata/0001_work_station.sql" relativeToChangelogFile="true"/>
+    <include file="../testdata/0002_product.sql" relativeToChangelogFile="true"/>
+    <include file="../testdata/0003_user_role.sql" relativeToChangelogFile="true"/>
+    <include file="../testdata/0006_client_group.sql" relativeToChangelogFile="true"/>
+
+    <include file="../testdata/0005_test_user.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="../testdata/0004_test_clients.sql" relativeToChangelogFile="true" context="dev"/>
+
+
+</databaseChangeLog>

@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:test;
+    username: admin
+    password: admin
+
+  liquibase:
+    contexts: dev
+
+  app:
+    email:
+      url: http://localhost:8080

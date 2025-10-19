@@ -1,0 +1,199 @@
+/* Reset + podstawy */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #fffceb;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Menu */
+.menu {
+    background-color: #fdd835;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0.5rem;
+    list-style: none;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.menu a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+.menu-logo-container {
+    font-size: 1.5rem;
+}
+
+.menu-item, .menu-toggle {
+    margin: 0.5rem;
+}
+
+/* Pozycjonowanie toggle w prawym górnym rogu przy logo */
+.menu-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+/* Ukryj przyciski menu na małych ekranach domyślnie */
+@media (max-width: 991px) {
+    .menu-item {
+        display: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu.expanded .menu-item {
+        display: block;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* Ukryj toggle na dużych ekranach */
+@media (min-width: 992px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
+/* Jumbotron */
+.jumbotron {
+    background-image: url("../img/aloes2.jpg");
+    background-position: center;
+    background-size: cover;
+    color: #333;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+}
+
+.jumbotron::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255, 255, 204, 0.4);
+    z-index: 0;
+}
+
+.jumbotron a {
+    color: #333;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+}
+
+.jumbotron-header {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.jumbotron-description {
+    font-size: 1.25rem;
+}
+
+/* Main */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #fffde7;
+}
+
+/* Footer */
+.footer {
+    background-color: #fdd835;
+    color: #333;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+    font-weight: bold;
+}
+/* Tabela produktów */
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+.product-table thead {
+    display: table-header-group;
+}
+
+.product-table tbody {
+    display: table-row-group;
+}
+
+.product-table th, .product-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+}
+
+.product-table th:nth-child(1), .product-table td:nth-child(1) {
+    width: 10%;
+}
+
+.product-table th:nth-child(2), .product-table td:nth-child(2) {
+    width: 30%;
+}
+
+.product-table th:nth-child(3), .product-table td:nth-child(3),
+.product-table th:nth-child(4), .product-table td:nth-child(4),
+.product-table th:nth-child(5), .product-table td:nth-child(5),
+.product-table th:nth-child(6), .product-table td:nth-child(6) {
+    width: 15%;
+}
+
+.product-table th {
+    background-color: #fdd835;
+    color: #333;
+    font-weight: bold;
+}
+
+.product-table tr:hover {
+    background-color: #fff9c4;
+}
+
+@media (max-width: 768px) {
+    .product-table th, .product-table td {
+        padding: 0.5rem;
+    }
+
+    .product-table {
+        font-size: 0.9rem;
+    }
+}

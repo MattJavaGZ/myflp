@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Lista klientów</title>
+</head>
+<body>
+<main class="main-content" layout:fragment="content">
+
+    <h1 class="list-heading">Lista klientów</h1>
+
+    <div class="list-heading" th:if="${clients.size() == 0}">Brak klientów. Dodaj pierwszego klienta
+        <br><br>
+    <a href="#" th:href="@{/klienci/dodaj}"><i class="fa-solid fa-user-plus fa-xl" style="color: red"></i></a>
+    </div>
+
+    <div class="form-search-container" th:if="${clients.size() != 0}">
+        <form action="#" th:action="@{/klienci/szukaj}" method="get">
+            <label for="search">Szukaj</label>
+            <input type="text" id="search" name="clientSearch" placeholder="Wpisz imię lub nazwisko...">
+            <button type="submit" class="form-search-button">Szukaj</button>
+        </form>
+        <div class="spacer"></div>
+        <a href="#" th:href="@{/klienci/dodaj}"><i class="fa-solid fa-user-plus fa-xl" style="color: red"></i></a>
+    </div>
+
+
+    <table class="table client-table responsive-table" th:if="${clients.size() != 0}">
+        <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Nazisko</th>
+            <th>Telefon</th>
+            <th>Email</th>
+<!--            <th>Adres</th>-->
+<!--            <th>Link FB</th>-->
+<!--            <th></th>-->
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="client : ${clients}"
+            th:onclick="'window.location.href=\'/klienci/' + ${client.id} + '\''"
+            style="cursor: pointer;">
+            <td>
+                <span class="label">Imię</span>
+                <span class="value" th:text="${client.getFirstName()}"></span>
+            </td>
+            <td>
+                <span class="label">Nazwisko</span>
+                <span class="value" th:text="${client.getLastName()}"></span>
+            </td>
+            <td>
+                <span class="label">Tel </span>
+                <span class="value" th:text="${client.getPhone()}"></span>
+            </td>
+            <td>
+                <span class="label">Email  </span>
+                <span class="value" th:text="${client.getEmail()}"></span>
+            </td>
+<!--            <td>-->
+<!--                <span class="label">Adres  </span>-->
+<!--                <span class="value" th:text="${client.getAddress()}"></span>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <span class="label">Link  </span>-->
+<!--                <span class="value" th:text="${client.getFbLink()}"></span>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <a th:href="@{|/zamowienia/nowe?idClient=${client.id}|}">-->
+<!--                    <i class="fa-solid fa-plus" style="color: #ff0000;"></i>-->
+<!--                </a>-->
+
+<!--                <a th:href="@{|/zamowienia/klient/${client.id}|}">-->
+<!--                    <i class="fa-solid fa-book" style="color: #FFD43B;"></i>-->
+<!--                </a>-->
+
+<!--                <a th:href="@{|/klienci/edytuj/${client.id}|}">-->
+<!--                    <i class="fa-solid fa-pencil"></i>-->
+<!--                </a>-->
+<!--            </td>-->
+
+
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+</body>
+</html>

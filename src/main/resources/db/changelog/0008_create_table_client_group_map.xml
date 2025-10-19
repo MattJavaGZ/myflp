@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0008_1" author="Matt">
+
+        <createTable tableName="client_group_map">
+            <column name="client_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="group_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_group_client_group"
+                             referencedTableName="client_group"
+                             referencedColumnNames="id"/>
+            </column>
+        </createTable>
+        <addPrimaryKey
+                tableName="client_group_map"
+                columnNames="client_id, group_id"
+                constraintName="pk_client_group_map"/>
+
+        <addForeignKeyConstraint baseTableName="client_group_map" baseColumnNames="client_id" constraintName="fk_client_group_client"
+                                 referencedTableName="client" referencedColumnNames="id" onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

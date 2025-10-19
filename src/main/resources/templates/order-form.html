@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Formularz tworzenia zamówienia</title>
+</head>
+<body>
+<main class="main-content" layout:fragment="content">
+
+    <h2 class="list-heading" th:text="|Nowe zamówienie dla: ${client.firstName} ${client.lastName}|"></h2>
+
+    <div th:if="${error}" class="confirmation">[[${error}]]</div>
+    <div th:if="${success}" class="confirmation">[[${success}]]</div>
+
+    <form th:action="@{/zamowienia/zapisz}" method="post" onsubmit="return prepareOrderData()">
+        <input type="hidden" name="clientId" th:value="${client.id}">
+        <input type="hidden" name="orderItemsJson" id="orderItemsJson">
+
+        <div class="product-row">
+            <input type="text" id="productSearch" placeholder="Wpisz nazwę produktu..." autocomplete="off">
+            <input type="number" id="productQuantity" placeholder="Ilość" min="1" value="1">
+            <button type="button" onclick="addSelectedProduct()">Dodaj</button>
+        </div>
+        <div id="suggestions" style="border: 1px solid #ccc; max-height: 150px; overflow-y: auto;"></div>
+
+        <table id="orderTable" class="responsive-table">
+            <thead>
+            <tr>
+                <th>Produkt</th>
+                <th>Cena katalog szt</th>
+                <th>Twoja cena zakupu szt</th>
+                <th>Cena po rabacie szt</th>
+                <th>Ilość</th>
+                <th>Rabat</th>
+                <th>Łączna cena </th>
+                <th>Pkt CC</th>
+                <th>Zysk</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div id="orderSummary">
+            Wartość zamówienia: <span id="totalBrutto">0.00</span> zł<br>
+            Zysk: <span id="totalProfit">0.00</span> zł<br>
+            Punkty CC: <span id="totalCC">0.00</span> cc
+        </div>
+
+        <button type="submit" class="add-order-button">Zapisz zamówienie</button>
+    </form>
+</main>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Formularz dodawania klienta</title>
+</head>
+<body>
+<main class="main-content" layout:fragment="content">
+
+    <h1 class="list-heading">Dodaj klienta</h1>
+
+    <form action="#" th:action="@{/klienci/dodaj}" method="post" th:object="${clientToSave}" class="form-add-client">
+
+        <label for="firstName">Imię</label>
+        <input type="text" id="firstName" th:field="*{firstName}" required="required" />
+        <p th:errors="*{firstName}">Błędy związane z imieniem</p>
+
+        <label for="lastName">Nazwisko</label>
+        <input type="text" id="lastName" th:field="*{lastName}" required="required" />
+        <p th:errors="*{lastName}">Błędy związane z nawiskiem</p>
+
+        <label for="email">Email</label>
+        <input type="text" id="email" th:field="*{email}" />
+        <p th:errors="*{email}">Błędy związane z mailem</p>
+
+        <label for="phone">Telefon</label>
+        <input type="text" id="phone" th:field="*{phone}" />
+        <p th:errors="*{phone}">Błędy związane z numerem telefonu</p>
+
+        <label for="fbLink">Link FB</label>
+        <input type="text" id="fbLink" th:field="*{fbLink}" />
+        <p th:errors="*{fbLink}">Błędy związane z linkiem FB</p>
+
+        <label for="address">Adres</label>
+        <input type="text" id="address" th:field="*{address}" />
+        <p th:errors="*{address}">Błędy związane z adresem</p>
+
+        <label>Grupy:</label>
+        <div class="client-groups">
+            <div th:each="group : ${allGroups}">
+                <input type="checkbox"
+                       th:id="'group-' + ${group.id}"
+                       th:value="${group.id}"
+                       th:field="*{groupIds}" />
+                <label th:for="'group-' + ${group.id}" th:text="${group.name}"></label>
+            </div>
+        </div>
+        <p th:errors="*{groupIds}">Błędy związane z grupami</p>
+
+        <button type="submit">Dodaj klienta</button>
+    </form>
+
+</main>
+</body>
+</html>

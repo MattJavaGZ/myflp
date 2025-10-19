@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Lista klientów</title>
+</head>
+<body>
+    <main class="main-content" layout:fragment="content">
+
+        <h1 class="list-heading">Lista użytkowników</h1>
+
+        <table class="table users-table responsive-table">
+            <thead>
+            <tr>
+                <th>Imię</th>
+                <th>Naziwsko</th>
+                <th>Email</th>
+                <th>Data rejestracji</th>
+                <th>Stanowisko</th>
+                <th>Aktywny</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td>
+                    <span class="label">Imię</span>
+                    <span class="value" th:text="${user.firstName}"></span>
+                </td>
+                <td>
+                    <span class="label">Nazwisko</span>
+                    <span class="value" th:text="${user.lastName}"></span>
+                </td>
+                <td>
+                    <span class="label">Email</span>
+                    <span class="value" th:text="${user.email}"></span>
+                </td>
+                <td>
+                    <span class="label">Data rejestracji</span>
+                    <span class="value" th:text="${#temporals.format(user.getDateAdded(), 'dd-MM-yyyy')}"></span>
+                </td>
+                <td>
+                    <span class="label">Stanowisko</span>
+                    <span class="value" th:text="${user.workStation}"></span>
+                </td>
+                <td>
+                    <span class="label">Aktywacja</span>
+                    <a class="value" th:class="${user.isActiv()} ? '' : 'red'"
+                       href="#" th:href="${user.isActiv()} ?
+                        @{|/uzytkownicy/dezaktywuj/${user.id}|} : @{|/uzytkownicy/aktywuj/${user.id}|}"
+                    th:text="${user.isActiv()} ? 'Dezaktywuj' : 'Aktywuj'"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </main>
+</body>
+</html>

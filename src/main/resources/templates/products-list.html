@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Lista produktów</title>
+</head>
+<body>
+<main class="main-content" layout:fragment="content">
+
+    <h2 class="list-heading">Lista produktów</h2>
+
+    <!--    <ul class="products-list">-->
+    <!--        <li class="product-list-item" th:each="product : ${products}">-->
+    <!--            <p th:text="${product.getPartNumber()}">Numer</p>-->
+    <!--            <p th:text="${product.getName()}">Nazwa produktu</p>-->
+    <!--            <p th:text="${#numbers.formatDecimal(product.getRetailPriceNetto(),2,2)}">Cena detaliczna netto</p>-->
+    <!--            <p th:text="${#numbers.formatDecimal(product.getRetailPriceBrutto(),2,2)}">Cena detaliczna brutto</p>-->
+    <!--            <p th:text="${#numbers.formatDecimal(product.getPurchasePriceBrutto(),2,2)}">Cena zakupu</p>-->
+    <!--            <p th:text="${product.getCc()}">Punkty cc</p>-->
+    <!--        </li>-->
+    <!--    </ul>-->
+    <div class="form-search-container">
+        <form action="#" th:action="@{/produkty/szukaj}" method="get">
+            <label for="search">Szukaj</label>
+            <input type="text" id="search" name="productSearch" placeholder="Wpisz produkt...">
+            <button type="submit" class="form-search-button">Szukaj</button>
+        </form>
+    </div>
+
+    <table class="table responsive-table">
+        <thead>
+        <tr>
+            <th>Numer</th>
+            <th>Nazwa produktu</th>
+            <th>Cena katalogowa netto</th>
+            <th>Cena katalogowa brutto</th>
+            <th>Cena zakupu brutto</th>
+            <th>Punkty cc</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}"
+            th:onclick="'window.location.href=\'' + @{/zamowienia/produkt/{id}(id=${product.id})} + '\''"
+            style="cursor: pointer;">
+            <td>
+                <span class="label">Numer</span>
+                <span class="value" th:text="${product.getPartNumber()}"></span>
+            </td>
+            <td>
+                <span class="label">Nazwa</span>
+                <span class="value" th:text="${product.getName()}"></span>
+            </td>
+            <td>
+                <span class="label">Cena kat netto</span>
+                <span class="value" th:text="${#numbers.formatDecimal(product.getRetailPriceNetto(),2,2)}"></span>
+            </td>
+            <td>
+                <span class="label">Cena kat brutto</span>
+                <span class="value" th:text="${#numbers.formatDecimal(product.getRetailPriceBrutto(),2,2)}"></span>
+            </td>
+            <td>
+                <span class="label">Cena zakupu brutto</span>
+                <span class="value" th:text="${#numbers.formatDecimal(product.getPurchasePriceBrutto(),2,2)}"></span>
+            </td>
+            <td>
+                <span class="label">Punkty CC</span>
+                <span class="value" th:text="${product.getCc()}"></span>
+            </td>
+
+        </tr>
+        </tbody>
+
+    </table>
+</main>
+>
+</body>
+</html>

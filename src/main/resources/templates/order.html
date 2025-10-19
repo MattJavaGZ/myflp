@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Zamówienie</title>
+</head>
+<body>
+    <main class="main-content" layout:fragment="content">
+
+        <h1 class="list-heading">Szczegóły zamówienia</h1>
+
+        <div th:if="${success}" class="confirmation">[[${success}]]</div>
+
+        <h3 class="list-heading" th:text="|Zamówienie dla ${order.getClientFirstName()} ${order.getClientLastName()} |">
+            Zamówienie dla Jan Kowalski</h3>
+
+        <table class="table order-table responsive-table" border="1">
+            <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Ilość</th>
+                <th>Cena za szt</th>
+                <th>Łączna cena</th>
+                <th>Zysk</th>
+                <th>Punkty CC</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="orderItem : ${order.getItems()}">
+                <td>
+                    <span class="label">Nazwa</span>
+                    <span class="value" th:text="${orderItem.getProductName()}"></span>
+                </td>
+                <td>
+                    <span class="label">Ilość</span>
+                    <span class="value" th:text="|${orderItem.getQuantity()} szt|"></span>
+                </td>
+                <td>
+                    <span class="label">Cena szt</span>
+                    <span class="value" th:text="|${#numbers.formatDecimal(orderItem.getPricePerPiece(),1,2)} PLN|"></span>
+                </td>
+                <td>
+                    <span class="label">Cena łączna</span>
+                    <span class="value" th:text="|${#numbers.formatDecimal(orderItem.getTotalPrice(),1,2)} PLN|"></span>
+                </td>
+                <td>
+                    <span class="label">Zysk</span>
+                    <span class="value" th:text="|${#numbers.formatDecimal(orderItem.getProfit(),1,2)} PLN|"></span>
+                </td>
+                <td>
+                    <span class="label">Punkty CC</span>
+                    <span class="value" th:text="|${#numbers.formatDecimal(orderItem.getCc(),1,3)} CC|"></span>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="order-summary">
+            <div class="summary-row">
+                <span>Łączna kwota:</span>
+                <span th:text="|${#numbers.formatDecimal(order.getTotalPrice(),1,2)} PLN|">123 PLN</span>
+            </div>
+            <div class="summary-row">
+                <span>Zysk:</span>
+                <span th:text="|${#numbers.formatDecimal(order.getTotalProfit(),1,2)} PLN|">123 PLN</span>
+            </div>
+            <div class="summary-row">
+                <span>Punkty CC:</span>
+                <span th:text="|${#numbers.formatDecimal(order.getTotalCc(),1,3)}|">123</span>
+            </div>
+        </div>
+
+        <div class="order-delete-button">
+            <a th:href="@{|/zamowienia/usun/${order.getId()}|}" onclick="return confirm('Czy na pewno chcesz usunąć zamówienie ?')">
+                Usuń zamówienie
+            </a>
+        </div>
+
+    </main>
+</body>
+</html>

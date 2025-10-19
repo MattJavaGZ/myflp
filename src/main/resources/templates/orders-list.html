@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Lista zamówień</title>
+</head>
+<body>
+    <main class="main-content" layout:fragment="content">
+
+        <h1 class="list-heading" th:text="${heading}">Lista zamówień</h1>
+
+        <p class="notification" th:if="${notification}" th:text="${notification}">
+            Belka z powiadomieniami
+        </p>
+
+        <h3 class="list-heading" th:if="${orders == null || orders.size() == 0}">Brak zamówień :( </h3>
+
+        <div th:if="${summaryForProduct}" class="order-summary">
+            <div class="summary-row">
+                <span>Ilość sprzedanych sztuk:</span>
+                <span th:text="|${summaryForProduct.getTotalQuantity()} szt|">12 szt</span>
+            </div>
+            <div class="summary-row">
+                <span>Łączna kwota zamówień:</span>
+                <span th:text="|${#numbers.formatDecimal(summaryForProduct.getTotalPrice(),1,2)} PLN|">123 PLN</span>
+            </div>
+            <div class="summary-row">
+                <span>Łączny zysk:</span>
+                <span th:text="|${#numbers.formatDecimal(summaryForProduct.getTotalProfit(),1,2)} PLN|">123 PLN</span>
+            </div>
+            <div class="summary-row">
+                <span>Zdubyte punkty CC:</span>
+                <span th:text="|${#numbers.formatDecimal(summaryForProduct.getTotalCc(),1,3)} CC|">123</span>
+            </div>
+        </div>
+
+        <div th:if="${ordersSummary}" class="order-summary">
+            <div class="summary-row">
+                <span>Łączna kwota:</span>
+                <span th:text="|${#numbers.formatDecimal(ordersSummary.getTotalPrice(),1,2)} PLN|">123 PLN</span>
+            </div>
+            <div class="summary-row">
+                <span>Zysk:</span>
+                <span th:text="|${#numbers.formatDecimal(ordersSummary.getTotalProfit(),1,2)} PLN|">123 PLN</span>
+            </div>
+            <div class="summary-row">
+                <span>Punkty CC:</span>
+                <span th:text="|${#numbers.formatDecimal(ordersSummary.getTotalCc(),1,3)} CC|">123</span>
+            </div>
+        </div>
+
+        <div class="sort-select" th:if="${orders != null && orders.size() > 0}">
+            <form >
+            <select name="sort" id="sort">
+                <option value="dateDown">Data malejąco</option>
+                <option value="dateUp">Data rosnąco</option>
+                <option value="priceDown">Cena malejąco</option>
+                <option value="priceUp">Cena rosnąco</option>
+                <option value="profitDown">Zysk malejąco</option>
+                <option value="profitUp">Zysk rosnąco</option>
+            </select>
+                <button class="form-search-button">Sortuj</button>
+            </form>
+        </div>
+
+        <table class="table order-table responsive-table" th:if="${orders != null && orders.size() > 0}">
+            <thead>
+            <tr>
+                <th>Klient</th>
+                <th>Data zakupu</th>
+                <th>Kwota zamówienia</th>
+                <th>Zysk</th>
+                <th>Punkty CC</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}"
+                th:onclick="'window.location.href=\'' + @{/zamowienia/{id}(id=${order.id})} + '\''"
+                style="cursor: pointer;">
+                <td>
+                    <span class="label">Klient</span>
+                    <span class="value" th:text="|${order.getClientFirstName()} ${order.getClientLastName()}|"></span>
+                </td>
+                <td>
+                    <span class="label">Data zakupu</span>
+                    <span class="value" th:text="${#temporals.format(order.getOrderDate(), 'dd-MM-yyyy')}"></span>
+                </td>
+                <td>
+                    <span class="label">Kwota zamówienia</span>
+                    <span class="value" th:text="|${#numbers.formatDecimal(order.getTotalPrice(),1,2)} PLN|"></span>
+                </td>
+                <td>
+                    <span class="label">Zysk</span>
+                    <span class="value" th:text="|${#numbers.formatDecimal(order.getTotalProfit(),1,2)} PLN|"></span>
+                </td>
+                <td>
+                    <span class="label">Punkty</span>
+                    <span class="value" th:text="|${#numbers.formatDecimal(order.getTotalCc(),1,3)} CC|"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </main>
+</body>
+</html>

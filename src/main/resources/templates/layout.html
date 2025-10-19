@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona do zarządzania klientami, zamówieniami</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+    <script defer src="../static/scripts/common.js" th:src="@{/scripts/common.js}"></script>
+</head>
+
+<body>
+<div class="container">
+    <ul class="menu">
+        <li class="menu-logo-container interactive-item">
+            <a href="#" th:href="@{/}">
+                Aloeski
+            </a>
+        </li>
+
+        <li class="menu-toggle interactive-item">
+            <a href="#"><i id="toggle-icon" class="fa-solid fa-bars"></i> Menu</a>
+        </li>
+        <!--        <li class="menu-item interactive-item" >-->
+        <!--            <i class="fa-duotone fa-plus fa-beat fa-2xl" style="color: yellow"></i>-->
+        <!--            <a href="#" th:href="@{/dodaj-zamowienie}">Dodaj zamówienie</a>-->
+        <!--        </li>-->
+        <li class="menu-item interactive-item" sec:authorize="hasAnyRole('ADMIN')">
+            <a href="#" th:href="@{/produkty/dodaj}">
+                <i class="fa-solid fa-plus" style="color: red;"></i>
+            </a>
+        </li>
+        <li class="menu-item interactive-item" sec:authorize="isAuthenticated()">
+            <a href="#" th:href="@{/}">Produkty</a>
+        </li>
+        <li class="menu-item interactive-item" sec:authorize="isAuthenticated()">
+            <a href="#" th:href="@{/klienci}">Klienci</a>
+        </li>
+        <li class="menu-item interactive-item" sec:authorize="isAuthenticated()">
+            <a href="#" th:href="@{/zamowienia}">Zamówienia</a>
+        </li>
+        <li class="menu-item interactive-item" sec:authorize="isAuthenticated()">
+            <a href="#" th:href="@{/zamowienia/podsumowanie}">Podsumowanie</a>
+        </li>
+        <li class="menu-item interactive-item" sec:authorize="hasRole('ADMIN')">
+            <a href="#" th:href="@{/uzytkownicy}">Userzy</a>
+        </li>
+        <li class="menu-item interactive-item" sec:authorize="isAuthenticated()">
+            <a href="#" th:href="@{/uzytkownik}">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </li>
+        <li class="menu-item interactive-item">
+            <a sec:authorize="isAuthenticated()" href="#" th:href="@{/logout} ">Wyloguj</a>
+        </li>
+    </ul>
+    <header class="jumbotron">
+        <a href="#" th:href="@{/}">
+            <h1 class="jumbotron-header">Foreverowe Aloeski</h1>
+            <p class="jumbotron-description">
+                Powodzenia !
+            </p>
+        </a>
+    </header>
+    <main class="main-content" layout:fragment="content">
+
+    </main>
+    <footer class="footer">
+        by MattGZ
+    </footer>
+</div>
+</body>
+</html>

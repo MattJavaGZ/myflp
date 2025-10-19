@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Formularz rejestracji</title>
+</head>
+<body>
+<main class="main-content" layout:fragment="content">
+
+    <h1 class="list-heading">Rejestracja</h1>
+
+    <form action="#" th:action="@{/rejestracja}" method="post" th:object="${user}" class="form">
+
+        <label for="firstName">Imię:</label>
+        <input type="text" id="firstName" th:field="*{firstName}" placeholder="Anna..." required>
+        <p th:errors="*{firstName}" class="error-form">Błędy związane z imieniem</p>
+
+        <label for="lastName">Nazwisko:</label>
+        <input type="text" id="lastName" th:field="*{lastName}" placeholder="Kowalska..." required>
+        <p th:errors="*{lastName}" class="error-form">Błędy związane z naziwskiem</p>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" th:field="*{email}" placeholder="anna@anna.pl" required>
+        <p th:errors="*{email}" class="error-form">Błędy związane adresem email</p>
+
+        <label for="password">Hasło:</label>
+        <input type="password" id="password" th:field="*{password}" placeholder="hasło" required>
+        <p th:errors="*{password}" class="error-form">Błędy związane z hasłem</p>
+
+        <label for="workStation">Stanowisko:</label>
+        <select id="workStation" th:field="*{workStation}" required>
+            <option value="" hidden>Wybierz stanowisko</option>
+            <option th:each="workStation: ${workStations}" th:value="${workStation.getName()}" th:text="${workStation.getName()}"></option>
+        </select>
+
+        <button type="submit" class="form-button">Zarejestruj</button>
+
+    </form>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Strona klienta</title>
+</head>
+<body>
+<main class="main-content" layout:fragment="content">
+
+    <h1 class="list-heading" >Strona klienta</h1>
+
+    <div class="client-details">
+        <p th:text="|Godność: ${client.firstName} ${client.lastName}|">Imię i nazwisko</p>
+        <p th:text="|Telefon: ${client.phone}|">Telefon</p>
+        <p th:text="|Email: ${client.email}|">Email</p>
+        <p th:text="|Adres: ${client.address}|">Adres</p>
+        <p th:text="|Link: ${client.fbLink}|">Link</p>
+        <p th:text="|Data dodania: ${#temporals.format(client.dateAdded, 'dd-MM-yyyy')}|">Data dodania</p>
+
+        <p th:text="${client.groups.size() == 0} ? 'Grupy: brak' : 'Grypy:'">Grupy:</p>
+        <div class="groups">
+            <p th:each="group: ${client.groups}" th:text="${group}">Data dodania</p>
+        </div>
+    </div>
+
+    <div class="client-actions">
+        <a th:href="@{|/zamowienia/nowe?idClient=${client.id}|}">
+            <i class="fa-solid fa-plus"></i> Nowe zamówienie
+        </a>
+
+        <a th:href="@{|/zamowienia/klient/${client.id}|}">
+            <i class="fa-solid fa-book"></i> Zamówienia klienta
+        </a>
+
+        <a th:href="@{|/klienci/edytuj/${client.id}|}">
+            <i class="fa-solid fa-pen-to-square"></i> Edycja klienta
+        </a>
+    </div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Twoje dane</title>
+</head>
+<body>
+    <main class="main-content" layout:fragment="content">
+        <h1 class="list-heading">Twoje dane</h1>
+
+        <div class="user-data">
+        <p th:text="|Imię: ${user.firstName}|">Kasia</p>
+        <p th:text="|Nazwisko: ${user.lastName}|">Kowalska</p>
+        <p th:text="|Email: ${user.email}|">Kasia@onet.pl</p>
+        <p th:text="|Stanowisko: ${user.workStation}|">Kierownik</p>
+        <p th:text="|Data rejestracji: ${#temporals.format(user.dateAdded, 'dd-MM-yyyy')}|">01-05-2025</p>
+        </div>
+
+        <div class="user-edit-form">
+        <h3>Zmiana stanowiska:</h3>
+        <form action="#" th:action="@{/uzytkownik/zmiana-stanowiska}" method="post">
+            <select id="workStation" name="workStation" required>
+                <option value="" hidden>Wybierz stanowisko</option>
+                <option th:each="workStation: ${workStations}" th:value="${workStation.getName()}" th:text="${workStation.getName()}"></option>
+            </select>
+            <button type="submit">Zmień stanowisko</button>
+        </form>
+        </div>
+
+    </main>
+</body>
+</html>

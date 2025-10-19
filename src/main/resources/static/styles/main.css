@@ -1,0 +1,1224 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+body {
+    font-family: "Poppins", serif;
+    -webkit-overflow-scrolling: touch; /* Płynne scrollowanie na iOS */
+    scroll-behavior: smooth; /* Płynne przewijanie przy linkach kotwicowych */
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: white;
+}
+
+.jumbotron,
+.menu,
+.list-heading {
+    font-family: "Comic Neue", serif;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.menu-item {
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+    display: none;
+}
+
+.expanded > .menu-item {
+    display: block;
+}
+
+.expanded > .menu-notification {
+    display: none;
+}
+
+.menu-logo-container,
+.menu-toggle {
+    display: block;
+    padding: 16px 32px;
+    font-size: 20px;
+}
+
+
+.footer {
+    padding: 8px;
+    text-align: center;
+    color: black;
+    margin-top: 10px;
+}
+
+@media only screen and (min-width: 992px) {
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .menu-item,
+    .menu-notification {
+        display: block;
+        width: auto;
+        border-bottom: 0;
+    }
+
+    .menu-logo-container {
+        flex: 1;
+    }
+
+    .main-content,
+    .menu {
+        align-self: center;
+        width: 960px;
+    }
+}
+
+.jumbotron {
+    background-image: url("../img/aloes2.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 2rem;
+    text-align: center;
+}
+
+.jumbotron-header {
+    font-size: 3rem;
+    margin: 1rem 0;
+    color: #fdd835;
+}
+
+.jumbotron-description {
+    font-size: 1.2rem;
+    color: #fdd835;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.list-heading,
+.list-description {
+    text-align: center;
+    margin: 16px 0;
+}
+
+.error-login-message {
+    text-align: center;
+    color: red;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 32px;
+}
+
+.form > * {
+    margin-top: 8px;
+}
+
+.form > input {
+    font-size: 1.2rem;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.form-button {
+    font-size: 1rem;
+    padding: 8px;
+    margin-top: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+/* Tabela produktów */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+.table thead {
+    display: table-header-group;
+}
+
+.table tbody {
+    display: table-row-group;
+}
+
+.table th, .table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+}
+
+.table th:nth-child(1), .table td:nth-child(1) {
+    width: 8%;
+}
+
+.table th:nth-child(2), .table td:nth-child(2) {
+    width: 40%;
+}
+
+.table th:nth-child(3), .table td:nth-child(3),
+.table th:nth-child(4), .table td:nth-child(4),
+.table th:nth-child(5), .table td:nth-child(5),
+.table th:nth-child(6), .table td:nth-child(6) {
+    width: 14%;
+}
+
+.table th {
+    background-color: #fdd835;
+    color: #333;
+    font-weight: bold;
+}
+
+.table tr:hover {
+    background-color: #fff9c4;
+}
+
+@media (max-width: 768px) {
+    .table th, .table td {
+        padding: 0.5rem;
+    }
+
+    .table {
+        font-size: 0.9rem;
+    }
+}
+/*Tabela klientów*/
+.client-table th:nth-child(1), .client-table td:nth-child(1),
+.client-table th:nth-child(2), .client-table td:nth-child(2) {
+    width: 10%;
+}
+
+
+.client-table th:nth-child(3), .client-table td:nth-child(3) {
+    width: 12%;
+}
+.client-table th:nth-child(4), .client-table td:nth-child(4) {
+    width: 20%;
+}
+
+.client-table th:nth-child(5), .client-table td:nth-child(5),
+.client-table th:nth-child(6), .client-table td:nth-child(6) {
+    width: 22%;
+}
+.client-table th:nth-child(7), .client-table td:nth-child(7) {
+    width: 2%;
+}
+.client-table th:nth-child(8), .client-table td:nth-child(8) {
+    width: 2%;
+}
+
+/*Tabela zamówień*/
+.order-table th:nth-child(1), .order-table td:nth-child(1){
+    width: 25%;
+}
+.order-table th:nth-child(2), .order-table td:nth-child(2){
+    width: 11%;
+}
+.order-table th:nth-child(3), .order-table td:nth-child(3) {
+    width: 17%;
+}
+.order-table th:nth-child(4), .order-table td:nth-child(4) {
+    width: 17%;
+}
+
+.order-table th:nth-child(5), .order-table td:nth-child(5) {
+    width: 17%;
+}
+
+/*Tabela użytkowników*/
+.users-table th:nth-child(1), .users-table td:nth-child(1) {
+    width: 17%;
+}
+.users-table th:nth-child(2), .users-table td:nth-child(2) {
+    width: 17%;
+}
+.users-table th:nth-child(3), .users-table td:nth-child(3) {
+    width: 17%;
+}
+.users-table th:nth-child(4), .users-table td:nth-child(4) {
+    width: 17%;
+}
+.users-table th:nth-child(5), .users-table td:nth-child(5) {
+    width: 17%;
+}
+.users-table th:nth-child(6), .users-table td:nth-child(6) {
+    width: 15%;
+}
+
+/*formularze wyszukiwania */
+.form-container {
+    text-align: center;
+    margin-top: 1.2rem;
+}
+
+.form-search-container{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.form-search-container input {
+    padding: 6px 10px;
+    font-size: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    max-width: max-content;          /* żeby nie rozwalało układu */
+    white-space: nowrap;
+}
+.spacer {
+    flex-grow: 1;
+}
+/* Formularz dodawania klienta */
+.form-add-client {
+    max-width: 600px;
+    margin: 2rem auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-add-client label {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    color: #444;
+}
+
+.form-add-client input[type="text"] {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-add-client input[type="text"]:focus {
+    border-color: #fdd835;
+    outline: none;
+}
+
+.form-add-client p {
+    color: #d32f2f;
+    font-size: 0.875rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-add-client button[type="submit"] {
+    background-color: #fdd835;
+    color: #333;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-add-client button[type="submit"]:hover {
+    background-color: #fbc02d;
+}
+.add-client-button {
+    text-align: right;
+}
+
+/* Podpowiedzi pod wyszukiwarką */
+.suggestions-list {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 1000;
+    width: 280px;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.suggestions-list div {
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.suggestions-list div:hover {
+    background-color: #f0f0f0;
+}
+
+/* Kontener wyszukiwarki i przycisku */
+.product-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+/* Inputy i selecty w wierszu produktów */
+.product-row input[type="text"],
+.product-row input[type="number"],
+.product-row select {
+    padding: 7px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline-offset: 2px;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.product-row input[type="text"]:focus,
+.product-row input[type="number"]:focus,
+.product-row select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 3px rgba(0,123,255,0.5);
+}
+
+/* Przycisk dodawania produktu */
+.product-row button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.product-row button:hover {
+    background-color: #0056b3;
+}
+
+/* Tabela zamówienia */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    table-layout: fixed;
+    font-family: Arial, sans-serif;
+    font-size: 0.95rem;
+}
+
+/* Komórki tabeli */
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px 8px;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+/* Nagłówki tabeli */
+th {
+    background-color: #f8f9fa;
+    font-weight: 700;
+    color: #333;
+    user-select: none;
+}
+
+/* Inputy w tabeli (ilość) */
+input[type="number"] {
+    width: 60px;
+    padding: 5px 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+    outline-offset: 2px;
+    transition: border-color 0.2s ease;
+}
+
+input[type="number"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 3px rgba(0,123,255,0.5);
+}
+
+/* Select rabatu */
+select {
+    width: 75px;
+    padding: 5px 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline-offset: 2px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 3px rgba(0,123,255,0.5);
+}
+
+/* Przycisk usuń */
+button[type="button"] {
+    background-color: #fdd835;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+button[type="button"]:hover {
+    background-color: orange;
+}
+
+/* Podsumowanie zamówienia */
+#orderSummary {
+    margin-top: 25px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: right;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+#orderSummary span {
+    display: inline-block;
+    min-width: 140px;
+    padding-left: 8px;
+}
+.add-order-button {
+    margin-top: 1rem;
+    background-color: #fdd835;
+    color: #333;
+    border: none;
+    padding: 8px 16px;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    user-select: none;
+
+    float: right;  /* <-- to wyrówna przycisk do prawej */
+}
+
+.add-order-button:hover {
+    background-color: orange;
+    color: white;
+}
+
+.order-summary {
+    margin-top: 20px;
+    margin-left: auto; /* żeby całość była przy prawej stronie */
+    margin-right: auto;
+    max-width: 320px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between; /* etykieta w lewo, wartość w prawo */
+    margin: 6px 0;
+    font-size: 15px;
+}
+
+.summary-row:first-child {
+    font-weight: bold;
+    font-size: 16px;
+    color: red  /* akcent np. zielony dla kwoty */
+}
+.confirmation {
+  color: red;
+    text-align: center;
+}
+
+/* Ogólne ustawienia tabeli */
+.responsive-table {
+    width: 100%;
+    border-collapse: separate; /* collapse blokuje border-radius na tr */
+    border-spacing: 0;         /* usuwa odstępy między komórkami */
+    border: 0;                 /* usuń globalne obramowanie tabeli */
+    margin: 20px 0;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+/* Desktopowa tabela */
+.responsive-table thead {
+    background-color: #f7f7f7;
+}
+
+.responsive-table th,
+.responsive-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border: 1px solid #e0e0e0; /*  obramowanie w desktopie */
+}
+
+.responsive-table td .label {
+    display: none;
+}
+
+/* -------------------
+   MOBILE → KAFELKI
+------------------- */
+@media (max-width: 768px) {
+    /* chowa nagłówki, robimy z wiersza kartę */
+    .responsive-table thead {
+        display: none !important;
+    }
+
+    .responsive-table {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .responsive-table,
+    .responsive-table tbody,
+    .responsive-table tr,
+    .responsive-table td {
+        display: block !important;
+        width: 100% !important;
+        border: 0 !important;
+        text-align: left !important;
+    }
+
+    .responsive-table tr {
+        margin: 16px 0;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(255, 200, 0, 0.3); /* lekko żółty cień */
+        padding: 14px 16px;
+        cursor: pointer;
+        transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    /* Skalowanie przy kliknięciu */
+    .responsive-table tr:active {
+        transform: scale(0.997);
+    }
+
+    /* Cień przy najechaniu */
+    .responsive-table tr:hover {
+        box-shadow: 0 4px 14px rgba(255, 200, 0, 0.4);
+    }
+
+    /* Każda komórka jako dwukolumnowy wiersz */
+    .responsive-table td {
+        display: flex !important;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 8px 0 !important;
+        border-bottom: 1px solid #f0f0f0 !important;
+
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        hyphens: auto;
+    }
+
+    .responsive-table td:last-child {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px; /* odstęp między ikonami */
+        padding: 10px 0 !important;
+        border-bottom: 0 !important;
+        width: 100% !important;
+    }
+
+    .responsive-table td:last-child a {
+        flex: 0 0 auto; /* każdy link tylko tyle miejsca ile potrzebuje */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px; /* powiększ trochę ikony */
+    }
+
+    /* w ostatniej kolumnie ukrywamy etykiety/value */
+    /*.responsive-table td:last-child .label,*/
+    /*.responsive-table td:last-child .value {*/
+    /*    display: none !important;*/
+    /*}*/
+
+    /* Nagłówki komórek w mobile */
+    .responsive-table td .label {
+        flex: 0 1 45%;
+        font-weight: 700;
+        color: #333;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Wartości w mobile */
+    .responsive-table td .value {
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        white-space: normal !important;
+        text-align: left; /* lepiej wygląda przy długich tekstach */
+
+        padding-right: 6px; /* 🔑 mały zapas z prawej */
+        box-sizing: border-box; /* żeby padding nie rozwalał szerokości */
+    }
+}
+/* Pierwsza kolumna szersza */
+#orderTable td:first-child,
+#orderTable th:first-child {
+    width: 13%;   /* np. 30% szerokości tabeli */
+}
+
+/* Ostatnia kolumna węższa */
+#orderTable td:last-child,
+#orderTable th:last-child {
+    width: 2%;   /* np. tylko na przyciski */
+    text-align: center; /* wyśrodkowanie przycisku/usuwania */
+}
+/* Pola input w tabeli (ilość) */
+#orderTable td input[type="number"] {
+    width: 60px;   /* mała, konkretna szerokość */
+    padding: 4px;
+    text-align: center;
+}
+
+/* Pola select w tabeli (rabat) */
+#orderTable td select {
+    width: 70px;   /* wystarczające, żeby zmieścić % */
+    padding: 4px;
+    text-align: center;
+    text-align-last: center; /* wyśrodkowanie wybranej wartości */
+}
+/* --- Etykiety w komórkach tabeli zamówienia na małych ekranach --- */
+@media (max-width: 768px) {
+    #orderTable thead { display: none !important; }
+
+    #orderTable,
+    #orderTable tbody,
+    #orderTable tr,
+    #orderTable td {
+        display: block !important;
+        width: 100% !important;
+        border: 0 !important;
+        text-align: left !important;
+    }
+
+    #orderTable tr {
+        margin: 16px 0;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        padding: 14px 16px;
+    }
+
+    /* Komórka = 2 kolumny: [etykieta | wartość] */
+    #orderTable td {
+        display: grid !important;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 0 !important;
+        border-bottom: 1px solid #f0f0f0 !important;
+
+        min-width: 0;                 /* pozwala zawartości się zwężać */
+        word-break: break-word;
+        overflow-wrap: anywhere;
+    }
+    #orderTable td:last-child { border-bottom: 0 !important; }
+
+    /* Etykieta z data-label */
+    #orderTable td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: #333;
+    }
+
+    /* Pola edycyjne w komórkach */
+    #orderTable input[type="number"],
+    #orderTable select {
+        max-width: 160px;
+        width: 100%;
+        justify-self: center;           /* przylega do prawej kolumny */
+    }
+
+    /* Ostatnia kolumna z akcją (przycisk) bez etykiety */
+    #orderTable td[data-label="Akcja"] {
+        display: flex !important;
+        justify-content: flex-start;
+        gap: 8px;
+        border-bottom: 0 !important;
+    }
+    #orderTable td[data-label="Akcja"]::before { content: ""; display: none; }
+}
+.sort-select {
+    display: flex;
+    justify-content: center;   /* wyśrodkowanie w poziomie */
+    margin: 12px 0;            /* lekki margines góra/dół */
+}
+
+.sort-select form {
+    display: flex;
+    gap: 8px;                  /* odstęp między selectem a przyciskiem */
+    align-items: center;
+}
+
+.sort-select select {
+    padding: 6px 10px;
+    font-size: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: max-content;        /* dopasuj szerokość do najdłuższej opcji */
+    min-width: fit-content;    /* minimalna szerokość = zawartość */
+    white-space: nowrap;       /* nie łamie tekstu */
+}
+
+.form-search-button {
+    padding: 6px 12px;
+    font-size: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.sort-select button:hover {
+    background-color: #e9e9e9;
+}
+
+.error-404 {
+    text-align: center;
+    margin-top: 40px;
+}
+.error-404 img {
+    max-width: 400px;   /* maksymalny rozmiar obrazka */
+    width: 100%;        /* dopasowanie do ekranu */
+    height: auto;       /* proporcje zachowane */
+    border-radius: 8px; /* delikatne zaokrąglenie rogów */
+}
+.error-404 h2, h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #444;
+}
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+.error-form {
+    color: red;
+    font-weight: bold;
+}
+.notification {
+    text-align: center;
+    color: red;
+    padding: 8px 0;
+    font-size: large;
+    font-weight: bold;
+}
+#workStation {
+    min-width: 250px;
+    padding: 5px;
+}
+.red{
+    color: red;
+}
+/* ---------------------
+   STRONA TWOJE DANE
+--------------------- */
+
+/* Kontener z danymi użytkownika */
+.user-data {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow:
+            0 4px 10px rgba(255,200,0,0.25),   /* mocniejszy, bardziej nasycony żółty */
+            0 6px 20px rgba(255,200,0,0.35);  /* drugi cień dla głębi */
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.user-data p {
+    margin: 6px 0;
+    color: #333;
+}
+
+/* Formularz edycji */
+.user-edit-form {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow:
+            0 4px 10px rgba(255,200,0,0.25),   /* mocniejszy, bardziej nasycony żółty */
+            0 6px 20px rgba(255,200,0,0.35);  /* drugi cień dla głębi */
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.user-edit-form h3 {
+    margin-bottom: 12px;
+    font-size: 18px;
+    color: #444;
+}
+
+/* Select i button */
+.user-edit-form select {
+    padding: 8px 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-right: 10px;
+    min-width: 180px;
+}
+
+.user-edit-form button {
+    background: #FFD43B;
+    border: none;
+    padding: 8px 14px;
+    font-size: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.user-edit-form button:hover {
+    background: #e6be35;
+}
+
+/* ---------------------
+   MOBILE → RESPONSYWNOŚĆ
+--------------------- */
+@media (max-width: 768px) {
+    .user-data,
+    .user-edit-form {
+        padding: 14px 16px;
+    }
+
+    .user-edit-form select {
+        display: block;
+        margin: 0 0 12px 0;
+        width: 100%;
+    }
+
+    .user-edit-form button {
+        width: 100%;
+    }
+}
+.order-delete-button {
+    display: flex;
+    justify-content: center; /* wyśrodkowanie */
+    margin: 30px 0;          /* odstęp od reszty strony */
+}
+
+.order-delete-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #d32f2f; /* czerwony tekst */
+    text-decoration: none;
+    border: 2px solid #d32f2f;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+}
+
+.order-delete-button a:hover {
+    background: #d32f2f; /* czerwone tło po najechaniu */
+    color: #fff;         /* biały tekst po najechaniu */
+    box-shadow: 0 4px 10px rgba(211, 47, 47, 0.4);
+}
+
+/* 🔶 Sekcja wyboru okresu podsumowania */
+.orders-summary-date-range {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px; /* odstęp między przyciskami */
+    background: #fff;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow:
+            0 4px 10px rgba(255,200,0,0.25),
+            0 6px 20px rgba(255,200,0,0.35);
+    margin: 20px auto 30px auto;
+    max-width: 900px;
+    text-align: center;
+}
+
+.orders-summary-date-range p {
+    flex-basis: 100%;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 14px;
+    color: #333;
+}
+
+/* Styl przycisków */
+.orders-summary-date-range a {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    color: #333;
+    background-color: #fff9e6;
+    border: 2px solid #ffd54f;
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.15s ease,
+            box-shadow 0.2s ease;
+}
+
+/* Hover (najechanie myszką) */
+.orders-summary-date-range a:hover {
+    background-color: #ffd54f;
+    color: #000;
+    box-shadow: 0 4px 10px rgba(255, 200, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Efekt kliknięcia (active) */
+.orders-summary-date-range a:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 6px rgba(255, 200, 0, 0.3);
+    background-color: #ffe082;
+}
+
+/* Focus (nawigacja klawiaturą, dostępność) */
+.orders-summary-date-range a:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 213, 79, 0.6);
+}
+
+/* Aktywny przycisk (np. wybrany okres) */
+.orders-summary-date-range a.active {
+    background-color: #ffeb3b;
+    color: #000;
+    border-color: #ffca28;
+    box-shadow: 0 0 8px rgba(255, 200, 0, 0.5);
+}
+
+/* Widok mobilny */
+@media (max-width: 760px) {
+    .orders-summary-date-range {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .orders-summary-date-range a {
+        width: 80%;
+        padding: 10px 0;
+        font-size: 15px;
+    }
+}
+.client-groups {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.client-groups label {
+    display: flex;
+    flex-direction: column; /* checkbox nad tekstem */
+    align-items: center; /* wyśrodkowanie poziome */
+    justify-content: center; /* wyśrodkowanie pionowe */
+    background: #fff9e6;
+    border: 2px solid #ffd54f;
+    border-radius: 8px;
+    padding: 10px 16px;
+    min-width: 150px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+}
+
+.client-groups label:hover {
+    background-color: #ffd54f;
+    transform: translateY(-2px);
+}
+
+.client-groups input[type="checkbox"] {
+    display: block;
+    margin: 0 auto 6px auto; /* wyśrodkowanie i odstęp pod spodem */
+    transform: scale(1.3);
+    accent-color: #ffd54f; /* żółty checkbox */
+}
+
+/* 📱 Mobile */
+@media (max-width: 768px) {
+    .client-groups {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .client-groups label {
+        width: 100%;
+        max-width: 500px;
+        font-size: 1rem;
+        padding: 12px;
+    }
+}
+
+/* === STRONA KLIENTA === */
+.client-details {
+    background: #fffefa;
+    border: 2px solid #ffd54f;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 700px;
+    margin: 0 auto 24px auto;
+    box-shadow: 0 6px 20px rgba(255, 213, 79, 0.5);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* efekt podświetlenia po najechaniu */
+.client-details:hover {
+    box-shadow: 0 8px 24px rgba(255, 213, 79, 0.65);
+    transform: translateY(-3px);
+}
+
+.client-details p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.client-details label {
+    display: block;
+    margin-top: 18px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* grupy klienta */
+.client-details .groups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.client-details .groups p {
+    background: #fff9e6;
+    border: 2px solid #ffd54f;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* === PRZYCISKI AKCJI === */
+.client-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.client-actions a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff9e6;
+    border: 2px solid #ffd54f;
+    color: #444;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 10px rgba(255, 213, 79, 0.4);
+}
+
+.client-actions a i {
+    font-size: 1rem;
+}
+
+.client-actions a:hover {
+    background: #ffd54f;
+    transform: translateY(-2px);
+}
+
+/* === MOBILE === */
+@media (max-width: 600px) {
+    .client-details {
+        padding: 18px;
+        border-radius: 12px;
+    }
+
+    .client-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .client-actions a {
+        width: auto;
+        min-width: 220px;
+        text-align: center;
+    }
+
+    /* grupy pionowo na mobilu */
+    .client-details .groups {
+        flex-direction: column;
+        align-items: center;
+        gap: 1px; /* mniejsze odstępy */
+    }
+
+    .client-details .groups p {
+        width: 80%;
+        text-align: center;
+        padding: 5px 10px;
+    }
+}

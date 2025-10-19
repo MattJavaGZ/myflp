@@ -16,6 +16,7 @@
 
     <include file="../testdata/0001_work_station.sql" relativeToChangelogFile="true"/>
     <include file="../testdata/0002_product.sql" relativeToChangelogFile="true"/>
+    <include file="../testdata/0007_product2.sql" relativeToChangelogFile="true"/>
     <include file="../testdata/0003_user_role.sql" relativeToChangelogFile="true"/>
     <include file="../testdata/0006_client_group.sql" relativeToChangelogFile="true"/>
 

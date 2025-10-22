@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Regulamin | myflp.pl</title>
+</head>
+<body>
+<main class="main-content" layout:fragment="content">
+    <h1 class="list-heading">Regulamin serwisu myflp.pl</h1>
+
+    <section class="policy-container">
+        <p><strong>Data ostatniej aktualizacji:</strong> 8 października 2025 r.</p>
+
+        <h2>1. Postanowienia ogólne</h2>
+        <p>Serwis <strong>myflp.pl</strong> służy do zarządzania klientami i zamówieniami przez zarejestrowanych użytkowników.</p>
+
+        <h2>2. Rejestracja</h2>
+        <p>Użytkownik podaje prawdziwe dane i odpowiada za bezpieczeństwo swojego konta.</p>
+
+        <h2>3. Zasady korzystania</h2>
+        <ul>
+            <li>Serwis służy wyłącznie do własnych celów użytkownika.</li>
+            <li>Zabrania się działań utrudniających korzystanie z serwisu przez innych użytkowników.</li>
+        </ul>
+
+        <h2>4. Odpowiedzialność</h2>
+        <p>Administrator nie ponosi odpowiedzialności za dane wprowadzone przez użytkowników ani przerwy techniczne niezależne od niego.</p>
+
+        <h2>5. Usunięcie konta</h2>
+        <p>Użytkownik może usunąć konto w dowolnym momencie, kontaktując się na adres: <a href="mailto:matekjava@onet.pl">matekjava@onet.pl</a>.</p>
+
+        <h2>6. Zmiany regulaminu</h2>
+        <p>Administrator zastrzega sobie prawo do zmian regulaminu. O zmianach użytkownicy zostaną poinformowani po zalogowaniu.</p>
+    </section>
+
+    <div class="policy-buttons">
+        <a th:href="@{/}" class="policy-btn"><i class="fa-solid fa-house"></i> Strona główna</a>
+    </div>
+</main>
+</body>
+</html>

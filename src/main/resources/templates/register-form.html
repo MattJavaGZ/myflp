@@ -34,6 +34,12 @@
             <option th:each="workStation: ${workStations}" th:value="${workStation.getName()}" th:text="${workStation.getName()}"></option>
         </select>
 
+        <label class="statute-checkbox">
+            <input type="checkbox" name="acceptTerms" required >
+            Akceptuję <a href="/regulamin" target="_blank">Regulamin</a> i
+            <a href="/polityka-prywatnosci" target="_blank">Politykę prywatności</a>.
+        </label>
+
         <button type="submit" class="form-button">Zarejestruj</button>
 
     </form>

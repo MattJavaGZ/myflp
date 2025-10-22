@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Polityka Prywatności | myflp.pl</title>
+</head>
+<body>
+<main class="main-content" layout:fragment="content">
+    <h1 class="list-heading">Polityka Prywatności</h1>
+
+    <section class="policy-container">
+        <p><strong>Data ostatniej aktualizacji:</strong> 8 października 2025 r.</p>
+
+        <h2>1. Administrator danych</h2>
+        <p>Administratorem danych osobowych użytkowników serwisu <strong>myflp.pl</strong> jest właściciel serwisu.
+            Kontakt: <a href="mailto:matekjava@onet.pl">matekjava@onet.pl</a></p>
+
+        <h2>2. Zakres przetwarzanych danych</h2>
+        <ul>
+            <li>dane konta użytkownika (imię, nazwisko, e-mail, hasło),</li>
+            <li>dane wprowadzone przez użytkownika (np. dane klientów).</li>
+        </ul>
+
+        <h2>3. Cel przetwarzania danych</h2>
+        <ul>
+            <li>obsługa konta użytkownika,</li>
+            <li>tworzenie i zarządzanie danymi klientów,</li>
+            <li>zapewnienie bezpieczeństwa i funkcjonalności serwisu.</li>
+        </ul>
+
+        <h2>4. Podstawa prawna przetwarzania</h2>
+        <p>Art. 6 ust. 1 lit. b i f RODO.</p>
+
+        <h2>5. Prawa użytkownika</h2>
+        <ul>
+            <li>dostęp do danych,</li>
+            <li>usunięcie, sprostowanie, ograniczenie przetwarzania,</li>
+            <li>sprzeciw wobec przetwarzania,</li>
+            <li>skarga do PUODO.</li>
+        </ul>
+
+        <h2>6. Pliki cookies</h2>
+        <p>Serwis korzysta wyłącznie z technicznych plików cookies do utrzymania sesji zalogowanego użytkownika.</p>
+
+        <h2>7. Kontakt</h2>
+        <p><a href="mailto:matekjava@onet.pl">matekjava@onet.pl</a></p>
+    </section>
+
+    <div class="policy-buttons">
+        <a th:href="@{/}" class="policy-btn"><i class="fa-solid fa-house"></i> Strona główna</a>
+    </div>
+</main>
+</body>
+</html>

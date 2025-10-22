@@ -29,6 +29,8 @@ public class CustomSecurityService {
                 .requestMatchers("/rejestracja").permitAll()
                 .requestMatchers("/przypomnienie-hasla").permitAll()
                 .requestMatchers("/ustaw-nowe-haslo/**").permitAll()
+                .requestMatchers("/polityka-prywatnosci").permitAll()
+                .requestMatchers("/regulamin").permitAll()
                 .anyRequest().authenticated()
         );
 

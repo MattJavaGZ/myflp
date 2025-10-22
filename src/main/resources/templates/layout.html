@@ -73,8 +73,17 @@
     <main class="main-content" layout:fragment="content">
 
     </main>
-    <footer class="footer">
-        by MattGZ
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a th:href="@{/regulamin}">
+                <i class="fa-solid fa-scroll"></i> Regulamin
+            </a>
+            <span class="separator">|</span>
+            <a th:href="@{/polityka-prywatnosci}">
+                <i class="fa-solid fa-lock"></i> Polityka prywatności
+            </a>
+        </div>
+
     </footer>
 </div>
 </body>

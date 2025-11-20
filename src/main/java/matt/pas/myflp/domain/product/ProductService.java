@@ -4,42 +4,36 @@ import matt.pas.myflp.domain.product.dto.ProductForUserDto;
 import matt.pas.myflp.domain.product.dto.ProductOrderDto;
 import matt.pas.myflp.domain.product.dto.ProductToSaveDto;
 import matt.pas.myflp.domain.user.User;
-import matt.pas.myflp.domain.user.UserService;
+import matt.pas.myflp.infrastructure.user.CurrentUserProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final UserService userService;
+    private final CurrentUserProvider currentUserProvider;
 
-    public ProductService(ProductRepository productRepository, UserService userService) {
+    public ProductService(ProductRepository productRepository, CurrentUserProvider currentUserProvider) {
         this.productRepository = productRepository;
-        this.userService = userService;
+        this.currentUserProvider = currentUserProvider;
     }
 
     public List<ProductForUserDto> getAllProductsForUser() {
-        final User user = userService.getCurrentUser();
+        final User user = currentUserProvider.getCurrentUser();
         return productRepository.findAll().stream()
                 .map(product -> getProductForUserDto(product, user))
                 .sorted()
                 .toList();
     }
 
-    public Optional<Product> findById(Long id) {
-        return productRepository.findById(id);
-    }
-
     public List<ProductForUserDto> findProductsByUserWord (String userWord) {
-        final User user = userService.getCurrentUser();
+        final User user = currentUserProvider.getCurrentUser();
         return productRepository.findAllByNameContainingIgnoreCaseOrPartNumberContainingIgnoreCase(userWord, userWord)
                 .stream()
                 .map(product -> getProductForUserDto(product, user))
@@ -47,7 +41,7 @@ public class ProductService {
     }
 
     public List<ProductOrderDto> findProductsByUserWordToOrderSelect (String userWord) {
-        final User user = userService.getCurrentUser();
+        final User user = currentUserProvider.getCurrentUser();
         return productRepository.findAllByNameContainingIgnoreCaseOrPartNumberContainingIgnoreCase(userWord, userWord)
                 .stream()
                 .map(product -> getProductOrderDto(product, user))

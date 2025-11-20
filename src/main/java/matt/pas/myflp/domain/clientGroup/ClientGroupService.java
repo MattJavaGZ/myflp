@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public class ClientGroupService {
 
-    private ClientGroupRepository clientGroupRepository;
+    private final ClientGroupRepository clientGroupRepository;
 
 
     public ClientGroupService(ClientGroupRepository clientGroupRepository) {
@@ -21,8 +21,5 @@ public class ClientGroupService {
                 .toList();
     }
 
-    public List<ClientGroup> findClientGroupsByGroupsId(List<Long> groupIds) {
-        return clientGroupRepository.findAllById(groupIds);
-    }
 
 }

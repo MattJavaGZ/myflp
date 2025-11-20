@@ -4,9 +4,9 @@ import jakarta.transaction.Transactional;
 import matt.pas.myflp.domain.client.dto.CilentToSaveDto;
 import matt.pas.myflp.domain.client.dto.ClientDto;
 import matt.pas.myflp.domain.clientGroup.ClientGroup;
-import matt.pas.myflp.domain.clientGroup.ClientGroupService;
+import matt.pas.myflp.domain.clientGroup.ClientGroupRepository;
 import matt.pas.myflp.domain.user.User;
-import matt.pas.myflp.domain.user.UserService;
+import matt.pas.myflp.infrastructure.user.CurrentUserProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -18,20 +18,18 @@ import java.util.Optional;
 public class ClientService {
 
     private final ClientRepository clientRepository;
-    private final ClientGroupService clientGroupService;
-    private final UserService userService;
-    private final ClientMapper clientMapper;
+    private final ClientGroupRepository clientGroupRepository;
+    private final CurrentUserProvider currentUserProvider;
 
-    public ClientService(ClientRepository clientRepository, ClientGroupService clientGroupService, UserService userService,
-                         ClientMapper clientMapper) {
+    public ClientService(ClientRepository clientRepository, ClientGroupRepository clientGroupRepository,
+                         CurrentUserProvider currentUserProvider) {
         this.clientRepository = clientRepository;
-        this.clientGroupService = clientGroupService;
-        this.userService = userService;
-        this.clientMapper = clientMapper;
+        this.clientGroupRepository = clientGroupRepository;
+        this.currentUserProvider = currentUserProvider;
     }
 
     public List<ClientDto> findAllCientsByUser() {
-        final User user = userService.getCurrentUser();
+        final User user = currentUserProvider.getCurrentUser();
         return clientRepository.findAllByUser(user).stream()
                 .map(ClientMapper::mapToClientDto)
                 .sorted()
@@ -39,7 +37,7 @@ public class ClientService {
     }
 
     public List<ClientDto> findClientsByUserWord(String word) {
-        final User user = userService.getCurrentUser();
+        final User user = currentUserProvider.getCurrentUser();
         return clientRepository.findAllByUser(user).stream()
                 .filter(client -> searchInClient(client, word))
                 .map(ClientMapper::mapToClientDto)
@@ -59,8 +57,8 @@ public class ClientService {
     }
 
     public void addNewClient(CilentToSaveDto client) {
-        final User user = userService.getCurrentUser();
-        final List<ClientGroup> clientGroups = clientGroupService.findClientGroupsByGroupsId(client.getGroupIds());
+        final User user = currentUserProvider.getCurrentUser();
+        final List<ClientGroup> clientGroups = clientGroupRepository.findAllById(client.getGroupIds());
         final Client clientToSave = ClientMapper.mapClientToSaveToClient(client, user, clientGroups);
         clientRepository.save(clientToSave);
     }
@@ -70,9 +68,6 @@ public class ClientService {
                 .map(ClientMapper::mapToClientDto);
     }
 
-    public Optional<Client> findClientById(Long id) {
-        return clientRepository.findById(id);
-    }
     public Optional<CilentToSaveDto> findClientToSaveById(Long id){
         return clientRepository.findById(id)
                 .map(ClientMapper::mapClientToClientToSave);
@@ -84,7 +79,7 @@ public class ClientService {
     }
 
     public boolean verifiClient(long clientId){
-        final User user = userService.getCurrentUser();
+        final User user = currentUserProvider.getCurrentUser();
         final Client client = clientRepository.findById(clientId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return client.getUser().equals(user);
     }
@@ -98,6 +93,6 @@ public class ClientService {
         clientToEdit.setEmail(client.getEmail());
         clientToEdit.setPhone(client.getPhone());
         clientToEdit.setFbLink(client.getFbLink());
-        clientToEdit.setGroups(clientGroupService.findClientGroupsByGroupsId(client.getGroupIds()));
+        clientToEdit.setGroups(clientGroupRepository.findAllById(client.getGroupIds()));
     }
 }

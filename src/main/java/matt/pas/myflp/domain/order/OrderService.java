@@ -1,10 +1,10 @@
 package matt.pas.myflp.domain.order;
 
 import matt.pas.myflp.domain.order.dto.OrderDto;
-import matt.pas.myflp.domain.orderItem.OrderItemService;
+import matt.pas.myflp.domain.orderItem.OrderItemMapper;
 import matt.pas.myflp.domain.orderItem.dto.OrderItemDto;
 import matt.pas.myflp.domain.user.User;
-import matt.pas.myflp.domain.user.UserService;
+import matt.pas.myflp.infrastructure.user.CurrentUserProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,17 +16,15 @@ import java.util.List;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final OrderItemService orderItemService;
-    private final UserService userService;
+    private final CurrentUserProvider currentUserProvider;
 
-    public OrderService(OrderRepository orderRepository, OrderItemService orderItemService, UserService userService) {
+    public OrderService(OrderRepository orderRepository, CurrentUserProvider currentUserProvider) {
         this.orderRepository = orderRepository;
-        this.orderItemService = orderItemService;
-        this.userService = userService;
+        this.currentUserProvider = currentUserProvider;
     }
 
     public List<OrderDto> getOrdersForUser(String sort) {
-        final User user = userService.getCurrentUser();
+        final User user = currentUserProvider.getCurrentUser();
         return orderRepository.findAllByUser(user).stream()
                 .map(this::orderToOrderDto)
                 .sorted(orderComparator(sort))
@@ -46,7 +44,7 @@ public class OrderService {
     }
 
     public List<OrderDto> getOrdersForUserByDate(String sort, String dateRange) {
-        final User user = userService.getCurrentUser();
+        final User user = currentUserProvider.getCurrentUser();
         final DateRangeForOrdersSummary dateRangeToOrdersSummary = OrderDateRangeCalculator.dateRangeToSummary(dateRange);
         final List<Order> orders = orderRepository.findAllByUserAndOrderDateBetween
                 (user, dateRangeToOrdersSummary.start(), dateRangeToOrdersSummary.end());
@@ -56,25 +54,26 @@ public class OrderService {
 
     public OrderDto getOrderById(Long id) {
         final Order order = orderRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        final User user = userService.getCurrentUser();
+        final User user = currentUserProvider.getCurrentUser();
 
         if (!order.getUser().equals(user)) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
-        final List<OrderItemDto> orderItemsDto = orderItemService.getOrderItemsDtoForOrder(order);
+        final List<OrderItemDto> orderItemsDto = getOrderItemsDtoForOrder(order);
+
         return OrderMapper.mapToDto(order, orderItemsDto);
     }
 
 
     public List<OrderDto> getOrdersForUserByClient(long clientId, String sort) {
-        final User user = userService.getCurrentUser();
+        final User user = currentUserProvider.getCurrentUser();
         final List<Order> orders = orderRepository.findAllByUserAndClient_Id(user, clientId);
 
         return mapToDtoAndSort(orders, sort);
     }
 
     public List<OrderDto> getOrdersForUserByProduct(long productId, String sort) {
-        final User user = userService.getCurrentUser();
+        final User user = currentUserProvider.getCurrentUser();
         final List<Order> orders = orderRepository.findAllByUserAndItems_Product_Id(user, productId);
 
         return mapToDtoAndSort(orders, sort);
@@ -88,8 +87,13 @@ public class OrderService {
     }
 
     private OrderDto orderToOrderDto(Order order) {
-        return OrderMapper.mapToDto(order, orderItemService.getOrderItemsDtoForOrder(order));
+        return OrderMapper.mapToDto(order, getOrderItemsDtoForOrder(order));
     }
 
+    private List<OrderItemDto> getOrderItemsDtoForOrder (Order order) {
+        return order.getItems().stream()
+                .map(OrderItemMapper::mapToDto)
+                .toList();
+    }
 
 }

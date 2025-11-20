@@ -3,7 +3,9 @@ package matt.pas.myflp.domain.user;
 import jakarta.transaction.Transactional;
 import matt.pas.myflp.domain.user.dto.UserRegisterDto;
 import matt.pas.myflp.domain.workStation.WorkStation;
-import matt.pas.myflp.domain.workStation.WorkStationService;
+import matt.pas.myflp.domain.workStation.WorkStationRepository;
+import matt.pas.myflp.infrastructure.config.CustomSecurityService;
+import matt.pas.myflp.infrastructure.user.CurrentUserProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,19 +19,20 @@ import java.util.UUID;
 public class UserManagementService {
 
     private final UserRepository userRepository;
-    private final WorkStationService workStationService;
-    private final UserRoleService userRoleService;
+    private final UserRoleRepository userRoleRepository;
+    private final WorkStationRepository workStationRepository;
+    private final CurrentUserProvider currentUserProvider;
     private final PasswordEncoder passwordEncoder;
-    private final UserService userService;
 
-    public UserManagementService(UserRepository userRepository, WorkStationService workStationService, UserRoleService userRoleService, PasswordEncoder passwordEncoder, UserService userService) {
+    public UserManagementService(UserRepository userRepository, UserRoleRepository userRoleRepository,
+                                 WorkStationRepository workStationRepository, CurrentUserProvider currentUserProvider,
+                                 PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.workStationService = workStationService;
-        this.userRoleService = userRoleService;
+        this.userRoleRepository = userRoleRepository;
+        this.workStationRepository = workStationRepository;
+        this.currentUserProvider = currentUserProvider;
         this.passwordEncoder = passwordEncoder;
-        this.userService = userService;
     }
-
 
     public void registerUser(UserRegisterDto userRegister) {
         final User userToSave = new User();
@@ -39,12 +42,12 @@ public class UserManagementService {
         final String encodePassword = passwordEncoder.encode(userRegister.getPassword());
         userToSave.setPassword(encodePassword);
         userToSave.setActivKey(generateActivKey());
-        final WorkStation workStation = workStationService.getWorkStationByName(userRegister.getWorkStation()).orElseThrow(
+        final WorkStation workStation = workStationRepository.findByName(userRegister.getWorkStation()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         userToSave.setWorkStation(workStation);
         userToSave.setActiv(false);
         userToSave.setDateAdded(LocalDateTime.now());
-        final UserRole userRole = userRoleService.getRegularUserRole();
+        final UserRole userRole = getRegularUserRole();
         userToSave.setRoles(List.of(userRole));
         userRepository.save(userToSave);
     }
@@ -68,14 +71,14 @@ public class UserManagementService {
 
     @Transactional
     public void editUserWorkStation(String workStationName) {
-        final User user = userService.getCurrentUser();
-        final WorkStation workStation = workStationService.getWorkStationByName(workStationName).orElseThrow(
+        final User user = currentUserProvider.getCurrentUser();
+        final WorkStation workStation = workStationRepository.findByName(workStationName).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         user.setWorkStation(workStation);
     }
 
     public List<String> getAdminEmails() {
-        final UserRole adminUserRole = userRoleService.getAdminUserRole();
+        final UserRole adminUserRole = getAdminUserRole();
 
         return userRepository.findAll().stream()
                 .filter(user -> user.getRoles().contains(adminUserRole))
@@ -93,5 +96,13 @@ public class UserManagementService {
             return true;
         }
         return false;
+    }
+
+    private UserRole getRegularUserRole() {
+        return userRoleRepository.findByName(CustomSecurityService.USER_ROLE).orElseThrow();
+    }
+
+    private UserRole getAdminUserRole() {
+        return userRoleRepository.findByName(CustomSecurityService.ADMIN_ROLE).orElseThrow();
     }
 }

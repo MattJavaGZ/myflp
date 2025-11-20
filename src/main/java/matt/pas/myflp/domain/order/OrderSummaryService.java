@@ -7,7 +7,7 @@ import matt.pas.myflp.domain.orderItem.OrderItem;
 import matt.pas.myflp.domain.orderItem.OrderItemMapper;
 import matt.pas.myflp.domain.orderItem.dto.OrderItemDto;
 import matt.pas.myflp.domain.user.User;
-import matt.pas.myflp.domain.user.UserService;
+import matt.pas.myflp.infrastructure.user.CurrentUserProvider;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -17,13 +17,12 @@ import java.util.List;
 public class OrderSummaryService {
 
     private final OrderRepository orderRepository;
-    private final UserService userService;
+    private final CurrentUserProvider currentUserProvider;
 
-    public OrderSummaryService(OrderRepository orderRepository, UserService userService) {
+    public OrderSummaryService(OrderRepository orderRepository, CurrentUserProvider currentUserProvider) {
         this.orderRepository = orderRepository;
-        this.userService = userService;
+        this.currentUserProvider = currentUserProvider;
     }
-
 
     public OrdersSummaryDto getOrdersSummary(List<OrderDto> orders) {
         BigDecimal totalPrice = getTotalPriceForOrders(orders);
@@ -90,7 +89,7 @@ public class OrderSummaryService {
     }
 
     private List<OrderItem> getOrderItemsForProduct(long productId) {
-        final User user = userService.getCurrentUser();
+        final User user = currentUserProvider.getCurrentUser();
         return orderRepository.findAllByUserAndItems_Product_Id(user, productId).stream()
                 .map(Order::getItems)
                 .flatMap(List::stream)

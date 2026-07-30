@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://mysql:3306/myflp
-    username: root
-    password: mVPLC17OL1YDurXVJ9cGAF
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_KEY}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   liquibase:

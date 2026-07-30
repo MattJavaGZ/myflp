@@ -11,8 +11,8 @@ spring:
 
   app:
     email:
-      login: matekjava@onet.pl
-      password: nowetrudnehaslo123@
+      login: ${EMAIL_USERNAME}
+      password: ${EMAIL_KEY}
 
 server:
   servlet:

@@ -1,3 +1,16 @@
+# MyFlp
+
+## 📋 O Projekcie
+
+**MyFlp** Aplikacja służąca do obsługi zamówień dla agentek sprzedających produktu na bazie aloesu
+
+- **Język**: Java 21
+- **Framework**: Spring Boot 3.5.6
+- **Baza danych**: MySQL (produkcja) / H2 (development)
+- **Szablony**: Thymeleaf
+- **ORM**: JPA/Hibernate
+- **Migracje**: Liquibase
+
 # 🔐 Konfiguracja email
 
 Konfiguracja dla smtp.poczta.onet.pl

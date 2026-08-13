@@ -19,8 +19,8 @@
     <include file="../testdata/0007_product2.sql" relativeToChangelogFile="true"/>
     <include file="../testdata/0003_user_role.sql" relativeToChangelogFile="true"/>
     <include file="../testdata/0006_client_group.sql" relativeToChangelogFile="true"/>
+    <include file="../testdata/0005_test_user.sql" relativeToChangelogFile="true"/>
 
-    <include file="../testdata/0005_test_user.sql" relativeToChangelogFile="true" context="dev"/>
     <include file="../testdata/0004_test_clients.sql" relativeToChangelogFile="true" context="dev"/>
 
 

@@ -1,17 +1,19 @@
 # MyFlp
 
-## 📋 O Projekcie
+## 📋 O projekcie
 
-**MyFlp**   Aplikacja służąca do obsługi zamówień dla agentek sprzedających produktu na bazie aloesu.
+MyFlp to autorska aplikacja wspierająca obsługę zamówień dla agentek
+zajmujących się sprzedażą produktów na bazie aloesu.
 
-            Aplikacja oferuje:
+### ✨ Funkcjonalności
 
-            - rejestrację nowych agentek oraz panel logowania,
-            - panel administracyjny umożliwiający zarządzanie użytkownikami,
-            - listę produktów wraz z cenami zakupu uzależnionymi od stanowiska agentki,
-            - możliwość dodawania klientów i obsługiwania ich zamówień,
-            - możliwość tworzenia i zarządzania zamówieniami,
-            - generowanie różnego rodzaju podsumowań i zestawień dotyczących zamówień agentki, klienta lub konkretnego produktu.
+- rejestracja nowych agentek,
+- logowanie zarejestrowanych agentek,
+- panel administracyjny do zarządzania użytkownikami,
+- lista produktów wraz z cenami zależnymi od stanowiska agentki,
+- dodawanie i zarządzanie klientami,
+- tworzenie i obsługa zamówień,
+- generowanie podsumowań zamówień według agentki, klienta oraz produktu.
 
 
 - **Język**: Java 21

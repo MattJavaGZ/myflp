@@ -4,6 +4,7 @@
 
 **MyFlp**   Aplikacja służąca do obsługi zamówień dla agentek sprzedających produktu na bazie aloesu.
             Aplikacja oferuje:
+
             - rejestrację nowych agentek oraz panel logowania,
             - panel administracyjny umożliwiający zarządzanie użytkownikami,
             - listę produktów wraz z cenami zakupu uzależnionymi od stanowiska agentki,

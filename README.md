@@ -15,6 +15,7 @@ zajmujących się sprzedażą produktów na bazie aloesu.
 - tworzenie i obsługa zamówień,
 - generowanie podsumowań zamówień według agentki, klienta oraz produktu.
 
+## 🛠️ Technologie
 
 - **Język**: Java 21
 - **Framework**: Spring Boot 3.5.6
@@ -23,11 +24,11 @@ zajmujących się sprzedażą produktów na bazie aloesu.
 - **ORM**: JPA/Hibernate
 - **Migracje**: Liquibase
 
-# 🔐 Konfiguracja email
+## 🔐 Konfiguracja email
 
 Konfiguracja dla smtp.poczta.onet.pl
 
-## application.yml
+### application.yml
 
 ```yaml
 
@@ -37,9 +38,9 @@ app:
     password: ${EMAIL_KEY}     # ← przeczytana ze zmiennej środowiskowej
 ```
 
-# 🔐 Konfiguracja DATABASE
+## 🔐 Konfiguracja DATABASE
 
-## application.prod.yml
+### application.prod.yml
 
 ```yaml
 spring:

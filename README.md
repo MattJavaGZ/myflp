@@ -2,7 +2,15 @@
 
 ## 📋 O Projekcie
 
-**MyFlp** Aplikacja służąca do obsługi zamówień dla agentek sprzedających produktu na bazie aloesu
+**MyFlp**   Aplikacja służąca do obsługi zamówień dla agentek sprzedających produktu na bazie aloesu.
+            Aplikacja oferuje:
+            - rejestrację nowych agentek oraz panel logowania,
+            - panel administracyjny umożliwiający zarządzanie użytkownikami,
+            - listę produktów wraz z cenami zakupu uzależnionymi od stanowiska agentki,
+            - możliwość dodawania klientów i obsługiwania ich zamówień,
+            - możliwość tworzenia i zarządzania zamówieniami,
+            - generowanie różnego rodzaju podsumowań i zestawień dotyczących zamówień agentki, klienta lub konkretnego produktu.
+
 
 - **Język**: Java 21
 - **Framework**: Spring Boot 3.5.6
@@ -36,3 +44,23 @@ spring:
     username: ${DATABASE_USERNAME}      # ← przeczytana ze zmiennej środowiskowej
     password: ${DATABASE_KEY}           # ← przeczytana ze zmiennej środowiskowej
 ```
+
+## 🧪 Konta demonstracyjne
+
+Aplikacja udostępnia testowe konta demonstracyjne, dzięki którym można zapoznać się z jej funkcjonalnościami.
+
+### 👤 Użytkownik
+
+**Login:** `user@user.pl`  
+**Hasło:** `user`
+
+Konto umożliwia korzystanie z funkcjonalności dostępnych dla standardowego użytkownika.
+
+### 🔐 Administrator
+
+**Login:** `admin@admin.pl`  
+**Hasło:** `admin`
+
+Konto posiada pełne uprawnienia administratora i umożliwia przetestowanie panelu administracyjnego.
+
+Konta służą wyłącznie do celów demonstracyjnych!
